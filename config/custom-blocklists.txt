@@ -1,0 +1,40 @@
+# Custom Blocklists for Pi-hole
+# Add URLs of blocklists here, one per line.
+# These are just examples; choose lists that suit your needs.
+# Always vet blocklist sources. More lists can mean more false positives.
+# Source: https://firebog.net (A good collection of lists)
+
+# Suspicious Lists (High probability of blocking malicious sites)
+# https://hosts-file.net/ad_servers.txt (Mainly Ad Servers but also some malware)
+https://osint.digitalside.it/Threat-Intel/lists/latestdomains.txt
+https://s3.amazonaws.com/lists.disconnect.me/simple_malvertising.txt
+https://raw.githubusercontent.com/stamparm/aux/master/maltrail-malware-domains.txt
+https://bitbucket.org/ethanr/dns-blacklists/raw/8dd2b0e1ed1d3435f8ac87838afdp9297b0cc84/bad_lists/Mandiant_APT1_Report_Appendix_D.txt
+
+# Advertising Lists (Primary ad blocking)
+https://adaway.org/hosts.txt
+https://v.firebog.net/hosts/AdguardDNS.txt
+https://v.firebog.net/hosts/Easylist.txt
+https://pgl.yoyo.org/adservers/serverlist.php?hostformat=hosts&showintro=0&mimetype=plaintext
+# https://www.github.developerdan.com/hosts/lists/ads-and-tracking-extended.txt (Dan Pollock's list - very large)
+
+# Tracking & Telemetry Lists
+https://v.firebog.net/hosts/Easyprivacy.txt
+https://v.firebog.net/hosts/Prigent-Ads.txt (Also includes ads)
+https://raw.githubusercontent.com/crazy-max/WindowsSpyBlocker/master/data/hosts/spy.txt (Windows telemetry)
+https://raw.githubusercontent.com/Perflyst/PiHoleBlocklist/master/SmartTV-AGH.txt (Smart TV telemetry)
+
+# Malicious Lists (More focused on malware, phishing)
+https://phishing.army/download/phishing_army_blocklist_extended.txt
+https://gitlab.com/quidsup/notrack-blocklists/raw/master/notrack-malware.txt
+https://raw.githubusercontent.com/austinheap/sophos-xg-block-lists/master/apt.txt
+https://raw.githubusercontent.com/austinheap/sophos-xg-block-lists/master/bot.txt
+https://raw.githubusercontent.com/austinheap/sophos-xg-block-lists/master/malware.txt
+
+# Optional: Consider lists for specific annoyances (e.g., Facebook, TikTok trackers, crypto miners)
+# but be aware they can break functionality if not carefully managed.
+
+# How to add to Pi-hole:
+# Go to Group Management -> Adlists in the Pi-hole web interface.
+# Paste the URL of the list and click "Add".
+# After adding lists, go to Tools -> Update Gravity.

@@ -1,0 +1,56 @@
+# Example Whitelist Entries for Pi-hole
+# These are domains that are sometimes blocked by overzealous blocklists
+# but might be required for certain services or functionality.
+# Add to Pi-hole via: Domain Management -> Whitelist
+
+# Common CDNs or service domains that might be broadly blocked
+# msftncsi.com # Microsoft Network Connectivity Status Indicator
+# www.msftncsi.com
+# cdn.optimizely.com # A/B testing platform
+# app.link # Branch.io, used for deep linking
+# logs.roku.com # Roku logging
+# api.roku.com
+
+# Specific app/service functionality
+# if you use Microsoft services:
+# login.live.com
+# login.microsoftonline.com
+# officecdn.microsoft.com
+# outlook.office.com
+
+# if you use Google services:
+# clientservices.googleapis.com
+# accounts.google.com
+
+# Streaming services sometimes have analytics/licensing domains
+# lic.drmtoday.com
+# s.llnwi.net (Limelight Networks CDN, often used for streaming)
+
+# Update servers
+# downloads. Ciò-devices.com (replace with actual device vendor)
+# update.sonos.com
+
+# Affiliate link domains (if you use them and they get caught)
+# click.linksynergy.com
+# t.co (Twitter shortener, sometimes on aggressive lists)
+
+# Analytics you might want to allow for your own sites (if applicable)
+# www.google-analytics.com
+# ssl.google-analytics.com
+# plausible.io
+
+# Gaming related
+# xboxlive.com
+# live.playstation.com
+# nintendo.net
+
+# Smart Home Devices
+# *.plex.direct (for Plex secure connections if local DNS rebind protection is an issue)
+# *.tuya.com (if you have Tuya-based smart devices, be cautious)
+# *.linksyssmartwifi.com
+
+# Notes:
+# - Whitelist sparingly. Only whitelist a domain if you are sure it's safe and necessary.
+# - Try to whitelist the most specific domain needed, rather than a broad top-level domain.
+# - Check the Query Log in Pi-hole to see exactly which domain is being blocked if a service isn't working.
+# - This list is not exhaustive and depends heavily on your personal usage.

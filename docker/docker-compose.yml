@@ -1,0 +1,56 @@
+version: "3.8"
+
+services:
+  pihole:
+    container_name: pihole
+    image: pihole/pihole:latest
+    restart: unless-stopped
+    hostname: pihole-docker # Optional: set a hostname for the container
+    env_file:
+      - .env # Load environment variables from .env file
+    volumes:
+      # Mounts for persistent Pi-hole configuration
+      - ./etc-pihole:/etc/pihole
+      - ./etc-dnsmasq.d:/etc/dnsmasq.d
+    # Ports:
+    # Pi-hole needs port 53 for DNS (TCP/UDP) and port 80 for the web admin interface.
+    # If port 80 on your host is already in use, map to a different host port (e.g., "8080:80").
+    # Ensure these ports are not blocked by a firewall on your host.
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+      - "${PIHOLE_WEB_PORT:-80}:80/tcp" # Use PIHOLE_WEB_PORT from .env, default to 80
+      # - "443:443/tcp" # Uncomment if you are setting up Pi-hole's HTTPS for web admin
+    cap_add:
+      - NET_ADMIN # Required for Pi-hole to manage network settings
+    # DNS settings for the Pi-hole container itself.
+    # It should NOT point to itself initially to avoid a loop during startup.
+    # Point to a public DNS or your router for the container's own resolution.
+    # Once Pi-hole is up and running with cloudflared, it will use its configured upstream (cloudflared).
+    dns:
+      - 1.1.1.1
+      - 1.0.0.1
+    networks:
+      pihole_network:
+        ipv4_address: ${PIHOLE_IPV4_ADDRESS:-172.20.0.2} # Assign a static IP within the Docker network
+
+  cloudflared:
+    container_name: cloudflared
+    image: cloudflare/cloudflared:latest
+    restart: unless-stopped
+    command: proxy-dns --port 5053 --upstream https://1.1.1.1/dns-query --upstream https://1.0.0.1/dns-query
+    # To use different DoH providers, change the --upstream URLs.
+    # e.g., for Google: --upstream https://dns.google/dns-query
+    # e.g., for Quad9 (filtered): --upstream https://dns.quad9.net/dns-query
+    depends_on:
+      - pihole # Optional, just for startup order if needed, not strictly required for functionality
+    networks:
+      pihole_network:
+        ipv4_address: ${CLOUDFLARED_IPV4_ADDRESS:-172.20.0.3} # Static IP for cloudflared
+
+networks:
+  pihole_network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: ${DOCKER_NETWORK_SUBNET:-172.20.0.0/24} # Define your Docker network subnet
