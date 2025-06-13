@@ -49,6 +49,23 @@
 # *.tuya.com (if you have Tuya-based smart devices, be cautious)
 # *.linksyssmartwifi.com
 
+# Common CDN domains that might be accidentally blocked
+s3.amazonaws.com
+ajax.googleapis.com
+fonts.googleapis.com
+fonts.gstatic.com
+cdnjs.cloudflare.com
+cdn.jsdelivr.net
+
+# Essential service domains
+mtalk.google.com  # Push notifications für Android
+connectivitycheck.gstatic.com  # Verbindungstests für Windows und Android
+connectivitycheck.android.com  # Internetverbindungsprüfung auf Android
+self.events.data.microsoft.com  # Windows Update 
+
+# E-Commerce Funktionalität
+s.shopify.com  # Für Online-Shops, die Shopify verwenden
+
 # Notes:
 # - Whitelist sparingly. Only whitelist a domain if you are sure it's safe and necessary.
 # - Try to whitelist the most specific domain needed, rather than a broad top-level domain.

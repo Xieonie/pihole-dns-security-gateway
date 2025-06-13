@@ -1,5 +1,9 @@
 # Pi-hole DNS Security Gateway 🛡️🚫
 
+![Docker](https://img.shields.io/badge/docker-ready-blue)
+![Pi-hole](https://img.shields.io/badge/Pi--hole-v5%2B-brightgreen)
+![License](https://img.shields.io/github/license/YOUR_USERNAME/pihole-dns-security-gateway)
+
 This repository describes the setup and configuration of [Pi-hole](https://pi-hole.net/) as a DNS Security Gateway. The goal is to create a safer and more private internet experience on the local network by blocking advertisements, trackers, and malicious domains at the DNS level. Additionally, DNS-over-HTTPS (DoH) is configured for outbound DNS queries to further enhance privacy.
 
 ## 🎯 Goals
@@ -42,7 +46,7 @@ This repository describes the setup and configuration of [Pi-hole](https://pi-ho
 	│   ├── docker-compose.yml
 	│   └── .env.example
 	└── scripts/
-	└── backup-pihole-settings.sh
+		└── backup-pihole-settings.sh
 
 
 ## 🚀 Getting Started / Configuration
@@ -77,6 +81,24 @@ Pi-hole can be installed in various ways. This repository focuses on configurati
 6.  **Maintenance and Backups:**
     * Regularly update Pi-hole and blocklists. See [`docs/pihole-maintenance-tips.md`](./docs/pihole-maintenance-tips.md).
     * Use the [`scripts/backup-pihole-settings.sh`](./scripts/backup-pihole-settings.sh) script to back up your Pi-hole settings.
+
+## ⚡ Quick Start
+
+1. Clone this repository:
+   ```bash
+   git clone https://github.com/YOUR_USERNAME/pihole-dns-security-gateway.git
+   cd pihole-dns-security-gateway/docker
+   ```
+2. Copy and edit the environment file:
+   ```bash
+   cp .env.example .env
+   # Edit .env and set your secure password and network settings
+   ```
+3. Start the stack:
+   ```bash
+   docker-compose up -d
+   ```
+4. Access Pi-hole at `http://<your_host_ip>:<PIHOLE_WEB_PORT>/admin/`
 
 ## 🔮 Potential Improvements/Future Plans
 
