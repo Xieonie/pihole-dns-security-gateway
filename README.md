@@ -2,7 +2,7 @@
 
 ![Docker](https://img.shields.io/badge/docker-ready-blue)
 ![Pi-hole](https://img.shields.io/badge/Pi--hole-v5%2B-brightgreen)
-![License](https://img.shields.io/github/license/YOUR_USERNAME/pihole-dns-security-gateway)
+![License](https://img.shields.io/github/license/Xieonie/pihole-dns-security-gateway)
 
 This repository describes the setup and configuration of [Pi-hole](https://pi-hole.net/) as a DNS Security Gateway. The goal is to create a safer and more private internet experience on the local network by blocking advertisements, trackers, and malicious domains at the DNS level. Additionally, DNS-over-HTTPS (DoH) is configured for outbound DNS queries to further enhance privacy.
 
@@ -86,7 +86,7 @@ Pi-hole can be installed in various ways. This repository focuses on configurati
 
 1. Clone this repository:
    ```bash
-   git clone https://github.com/YOUR_USERNAME/pihole-dns-security-gateway.git
+   git clone https://github.com/Xieonie/pihole-dns-security-gateway.git
    cd pihole-dns-security-gateway/docker
    ```
 2. Copy and edit the environment file:
